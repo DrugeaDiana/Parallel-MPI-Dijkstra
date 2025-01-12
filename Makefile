@@ -2,6 +2,7 @@ NUM_NODES=30000
 DENSITY=0.05
 SEED=0
 NUM_THREADS=2
+NUM_PROC = 2
 
 CC=g++
 CXXFLAGS=-Wall -Werror -g -DNUM_NODES=$(NUM_NODES) -DDENSITY=$(DENSITY) -DSEED=$(SEED) -DNUM_THREADS=$(NUM_THREADS)
@@ -50,7 +51,7 @@ run-mpi: parallel_mpi
 	mpirun -np $(NUM_THREADS) --oversubscribe ./parallel_mpi
 
 run-mpi-omp: parallel_mpi_omp
-	mpirun -np $(NUM_THREADS) --oversubscribe ./parallel_mpi_omp
+	mpirun -np $(NUM_PROC) --oversubscribe ./parallel_mpi_omp
 
 OUT_FILES=out out_omp out_pthread out_mpi out_mpi_omp
 
